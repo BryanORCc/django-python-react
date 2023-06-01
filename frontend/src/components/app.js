@@ -11,6 +11,19 @@ const App = () => {
               <th>HEAD3</th>
             </tr>
           </thead>
+
+          <tbody>
+            <tr>
+              <td>VALUE 10</td>
+              <td>VALUE 20</td>
+              <td>VALUE 30</td>
+            </tr>
+            <tr>
+              <td>VALUE 100</td>
+              <td>VALUE 200</td>
+              <td>VALUE 300</td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>

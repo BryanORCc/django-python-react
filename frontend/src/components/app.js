@@ -1,31 +1,49 @@
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
 const App = () => {
+  const [title, setTitle] = useState('');
+  const [completed, setCompleted] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post('/api/todoitems/', {
+        title,
+        completed,
+      });
+
+      // Realizar acciones después de la inserción exitosa
+      console.log('Data insertada:', response.data);
+
+      // Reiniciar los campos del formulario
+      setTitle('');
+      setCompleted(false);
+    } catch (error) {
+      // Manejar errores de inserción
+      console.error('Error al insertar los datos:', error);
+    }
+  };
+
   return (
     <div>
-      <h1>LOAD PP</h1>
-      <div>
-        <table>
-          <thead>
-            <tr>
-              <th>HEAD1</th>
-              <th>HEAD2</th>
-              <th>HEAD3</th>
-            </tr>
-          </thead>
+      <h1>LOAD APP DDDDD</h1>
 
-          <tbody>
-            <tr>
-              <td>VALUE 10</td>
-              <td>VALUE 20</td>
-              <td>VALUE 30</td>
-            </tr>
-            <tr>
-              <td>VALUE 100</td>
-              <td>VALUE 200</td>
-              <td>VALUE 300</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Título"
+        />
+        <input
+          type="checkbox"
+          checked={completed}
+          onChange={(e) => setCompleted(e.target.checked)}
+        />
+        <button type="submit">Agregar</button>
+      </form>
     </div>
   )
 }
